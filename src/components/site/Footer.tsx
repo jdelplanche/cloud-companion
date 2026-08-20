@@ -91,7 +91,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="vault-frame mt-9 flex flex-col gap-4 border-t border-gridline px-0 pt-6 sm:flex-row sm:items-center sm:justify-between md:mt-12 md:pt-7">
+        <div className="vault-frame mt-9 flex flex-col gap-4 rounded-md p-5 sm:flex-row sm:items-center sm:justify-between md:mt-12 md:p-6">
           <div className="flex flex-col gap-1.5">
             <span className="font-mono text-[9px] leading-[1.9] tracking-[0.18em] text-muted-ink uppercase">
               // © 2026 delplanche.cloud
