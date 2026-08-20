@@ -77,6 +77,25 @@ export function alternateLinks(locale: Locale, page: PageKey) {
   ];
 }
 
+/** Pad voor een cloud-detailpagina, bv. /nl/cloud/hosting */
+export function cloudPath(locale: Locale, target: string): string {
+  return `/${locale}/cloud/${target}`;
+}
+
+/** hreflang + canonical voor de cloud-detailpagina's. */
+export function cloudAlternateLinks(locale: Locale, target: string) {
+  return [
+    { rel: "canonical", href: `${SITE_URL}${cloudPath(locale, target)}` },
+    ...locales.map((l) => ({
+      rel: "alternate",
+      hrefLang: htmlLang[l],
+      href: `${SITE_URL}${cloudPath(l, target)}`,
+    })),
+    { rel: "alternate", hrefLang: "x-default", href: `${SITE_URL}${cloudPath(defaultLocale, target)}` },
+  ];
+}
+
+
 /** Beste taalmatch op basis van de browservoorkeur. */
 export function detectLocale(candidates: readonly string[]): Locale {
   for (const raw of candidates) {

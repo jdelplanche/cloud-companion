@@ -90,7 +90,7 @@ const en = {
         "Free SSL & Let's Encrypt",
       ],
       cta: "Order hosting",
-      href: "/go/hosting",
+      target: "hosting",
     },
     {
       id: "02",
@@ -103,7 +103,7 @@ const en = {
         "High-availability cluster",
       ],
       cta: "Configure VPS",
-      href: "/go/vps",
+      target: "vps",
     },
     {
       id: "03",
@@ -116,7 +116,7 @@ const en = {
         "Zero data mining",
       ],
       cta: "Discover kSuite",
-      href: "/go/ksuite",
+      target: "ksuite",
     },
   ],
   steps: [
@@ -301,7 +301,7 @@ const en = {
     disclosureIndex: "B / Disclosure",
     disclosureTitle: "Affiliate Disclosure",
     disclosureQuote:
-      "Delplanche may receive a commission when you purchase services through our links (/go/*). This does not affect your price and supports maintenance of our sovereign tooling.",
+      "Delplanche may receive a commission when you purchase services through our links (/cloud/*). This does not affect your price and supports maintenance of our sovereign tooling.",
     disclosureBody: "Recommendations are never determined by commission, only by production use.",
   },
   footer: {
@@ -413,7 +413,7 @@ const nl: Dict = {
         "Gratis SSL & Let's Encrypt",
       ],
       cta: "Bestel webhosting",
-      href: "/go/hosting",
+      target: "hosting",
     },
     {
       id: "02",
@@ -426,7 +426,7 @@ const nl: Dict = {
         "High-availability cluster",
       ],
       cta: "Configureer VPS",
-      href: "/go/vps",
+      target: "vps",
     },
     {
       id: "03",
@@ -439,7 +439,7 @@ const nl: Dict = {
         "Nul datamining",
       ],
       cta: "Ontdek kSuite",
-      href: "/go/ksuite",
+      target: "ksuite",
     },
   ],
   steps: [
@@ -624,7 +624,7 @@ const nl: Dict = {
     disclosureIndex: "B / Verantwoording",
     disclosureTitle: "Affiliate-verantwoording",
     disclosureQuote:
-      "Delplanche kan een commissie ontvangen wanneer je diensten afneemt via onze links (/go/*). Dit beïnvloedt je prijs niet en ondersteunt het onderhoud van onze soevereine tooling.",
+      "Delplanche kan een commissie ontvangen wanneer je diensten afneemt via onze links (/cloud/*). Dit beïnvloedt je prijs niet en ondersteunt het onderhoud van onze soevereine tooling.",
     disclosureBody: "Aanbevelingen worden nooit bepaald door commissie, wel door eigen productiegebruik.",
   },
   footer: {
@@ -734,7 +734,7 @@ const fr: Dict = {
         "SSL gratuit & Let's Encrypt",
       ],
       cta: "Commander l'hébergement",
-      href: "/go/hosting",
+      target: "hosting",
     },
     {
       id: "02",
@@ -747,7 +747,7 @@ const fr: Dict = {
         "Cluster haute disponibilité",
       ],
       cta: "Configurer le VPS",
-      href: "/go/vps",
+      target: "vps",
     },
     {
       id: "03",
@@ -760,7 +760,7 @@ const fr: Dict = {
         "Zéro exploitation des données",
       ],
       cta: "Découvrir kSuite",
-      href: "/go/ksuite",
+      target: "ksuite",
     },
   ],
   steps: [
@@ -945,7 +945,7 @@ const fr: Dict = {
     disclosureIndex: "B / Transparence",
     disclosureTitle: "Transparence sur les commissions",
     disclosureQuote:
-      "Delplanche peut percevoir une commission lorsque vous souscrivez via nos liens (/go/*). Cela n'affecte pas votre prix et soutient la maintenance de nos outils souverains.",
+      "Delplanche peut percevoir une commission lorsque vous souscrivez via nos liens (/cloud/*). Cela n'affecte pas votre prix et soutient la maintenance de nos outils souverains.",
     disclosureBody: "Les recommandations ne dépendent jamais des commissions, uniquement de l'usage en production.",
   },
   footer: {

@@ -7,6 +7,7 @@ import {
   actionClass,
   actionClassMuted,
 } from "@/components/site/Layout";
+import { CloudLink } from "@/components/site/CloudLink";
 
 const flowIcons = [Monitor, Network, Warehouse];
 
@@ -83,9 +84,9 @@ export function HomePage({ t }: { t: Dict }) {
                 ))}
               </ul>
               <div className="grow" />
-              <a href={s.href} className={`${actionClass} mt-7 w-full md:w-auto`}>
+              <CloudLink target={s.target} className={`${actionClass} mt-7 w-full md:w-auto`}>
                 {s.cta} <Arrow />
-              </a>
+              </CloudLink>
             </div>
           ))}
         </div>

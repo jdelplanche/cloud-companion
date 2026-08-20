@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { Check, Copy, Loader2 } from "lucide-react";
 import { useLocale, type Dict } from "@/i18n";
-import { submitContactMessage } from "@/lib/submissions.functions";
 import {
   Arrow,
   Field,
@@ -20,7 +18,6 @@ export function ContactPage({ t }: { t: Dict }) {
   const p = t.contactPage;
   const [copied, setCopied] = useState<"pgp" | "matrix" | null>(null);
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const send = useServerFn(submitContactMessage);
   const locale = useLocale();
 
   const copy = async (value: string, key: "pgp" | "matrix") => {
@@ -38,20 +35,25 @@ export function ContactPage({ t }: { t: Dict }) {
     const form = new FormData(e.currentTarget);
     setState("sending");
     try {
-      await send({
-        data: {
+      const res = await fetch("/api/public/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           locale,
           name: String(form.get("name") ?? ""),
           email: String(form.get("email") ?? ""),
           subject: String(form.get("subject") ?? ""),
           message: String(form.get("message") ?? ""),
-        },
+          company: String(form.get("company") ?? ""),
+        }),
       });
+      if (!res.ok) throw new Error(String(res.status));
       setState("sent");
     } catch {
       setState("error");
     }
   };
+
 
   return (
     <PageShellLite index={p.index} title={p.title} lead={p.lead}>
@@ -68,6 +70,10 @@ export function ContactPage({ t }: { t: Dict }) {
             </div>
           ) : (
             <form onSubmit={onSubmit} className="grid gap-8 md:grid-cols-2 md:gap-10">
+              <div aria-hidden="true" className="hidden">
+                <label htmlFor="company">Company</label>
+                <input id="company" name="company" tabIndex={-1} autoComplete="off" />
+              </div>
               <Field label={p.name}>
                 <input required name="name" className={fieldClass} placeholder="Jona Delplanche" />
               </Field>

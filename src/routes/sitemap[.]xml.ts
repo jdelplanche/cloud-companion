@@ -1,6 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { SITE_URL, htmlLang, locales, localePath, slugs, type PageKey } from "@/i18n/config";
+import {
+  SITE_URL,
+  cloudPath,
+  htmlLang,
+  locales,
+  localePath,
+  slugs,
+  type PageKey,
+} from "@/i18n/config";
+import { cloudTargets } from "@/i18n/cloud";
 
 const pages = Object.keys(slugs) as PageKey[];
 
@@ -35,10 +44,28 @@ export const Route = createFileRoute("/sitemap.xml")({
           ),
         );
 
+        const cloudUrls = cloudTargets.flatMap((target) =>
+          locales.map((locale) =>
+            [
+              `  <url>`,
+              `    <loc>${SITE_URL}${cloudPath(locale, target)}</loc>`,
+              ...locales.map(
+                (alt) =>
+                  `    <xhtml:link rel="alternate" hreflang="${htmlLang[alt]}" href="${SITE_URL}${cloudPath(alt, target)}"/>`,
+              ),
+              `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}${cloudPath("en", target)}"/>`,
+              `    <changefreq>monthly</changefreq>`,
+              `    <priority>0.7</priority>`,
+              `  </url>`,
+            ].join("\n"),
+          ),
+        );
+
         const xml = [
           `<?xml version="1.0" encoding="UTF-8"?>`,
           `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">`,
           ...urls,
+          ...cloudUrls,
           `</urlset>`,
         ].join("\n");
 
