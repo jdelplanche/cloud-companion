@@ -18,6 +18,7 @@ import { Route as CloudTargetRouteImport } from './routes/cloud.$target'
 import { Route as GoTargetRouteImport } from './routes/go.$target'
 import { Route as LangCloudIndexRouteImport } from './routes/$lang.cloud.index'
 import { Route as LangCloudTargetRouteImport } from './routes/$lang.cloud.$target'
+import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +65,11 @@ const LangCloudTargetRoute = LangCloudTargetRouteImport.update({
   path: '/cloud/$target',
   getParentRoute: () => LangRoute,
 } as any)
+const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
+  id: '/api/public/contact',
+  path: '/api/public/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/go/$target': typeof GoTargetRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/cloud/$target': typeof LangCloudTargetRoute
+  '/api/public/contact': typeof ApiPublicContactRoute
   '/$lang/cloud/': typeof LangCloudIndexRoute
 }
 export interface FileRoutesByTo {
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/go/$target': typeof GoTargetRoute
   '/$lang': typeof LangIndexRoute
   '/$lang/cloud/$target': typeof LangCloudTargetRoute
+  '/api/public/contact': typeof ApiPublicContactRoute
   '/$lang/cloud': typeof LangCloudIndexRoute
 }
 export interface FileRoutesById {
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/go/$target': typeof GoTargetRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/cloud/$target': typeof LangCloudTargetRoute
+  '/api/public/contact': typeof ApiPublicContactRoute
   '/$lang/cloud/': typeof LangCloudIndexRoute
 }
 export interface FileRouteTypes {
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/go/$target'
     | '/$lang/'
     | '/$lang/cloud/$target'
+    | '/api/public/contact'
     | '/$lang/cloud/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/go/$target'
     | '/$lang'
     | '/$lang/cloud/$target'
+    | '/api/public/contact'
     | '/$lang/cloud'
   id:
     | '__root__'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/go/$target'
     | '/$lang/'
     | '/$lang/cloud/$target'
+    | '/api/public/contact'
     | '/$lang/cloud/'
   fileRoutesById: FileRoutesById
 }
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CloudTargetRoute: typeof CloudTargetRoute
   GoTargetRoute: typeof GoTargetRoute
+  ApiPublicContactRoute: typeof ApiPublicContactRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -206,6 +219,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangCloudTargetRouteImport
       parentRoute: typeof LangRoute
     }
+    '/api/public/contact': {
+      id: '/api/public/contact'
+      path: '/api/public/contact'
+      fullPath: '/api/public/contact'
+      preLoaderRoute: typeof ApiPublicContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -231,6 +251,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   CloudTargetRoute: CloudTargetRoute,
   GoTargetRoute: GoTargetRoute,
+  ApiPublicContactRoute: ApiPublicContactRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
