@@ -159,8 +159,8 @@ const en: CloudDict = {
           price: "pay-per-use",
           unit: "from CHF 0.0092 / vCPU / h",
           specs: [
-            "OpenStack compatible",
-            "Dedicated bare-metal options",
+            "OpenStack API + Terraform provider",
+            "Dedicated bare-metal, 1 Gbps uplink",
             "Scalable per hour",
             "100% renewable energy",
           ],
@@ -409,6 +409,14 @@ const nl: CloudDict = {
         ["Doorlooptijd", "< 48 uur voor een productieklare node"],
         ["Inbegrepen", "Firewall, fail2ban, reverse proxy, TLS 1.3"],
       ],
+      techSpecs: [
+        ["Netwerk", "1 Gbps-poort per node, ongelimiteerd verkeer, IPv4 + IPv6 dual stack"],
+        ["Opslag", "Volledig NVMe, hoge IOPS (tot ~100k IOPS random read op de 4 vCPU-tiers)"],
+        ["OS-templates", "Ubuntu LTS, Debian, AlmaLinux, Rocky Linux, Fedora, Windows Server (BYOL)"],
+        ["Automatisatie", "OpenStack-compatibele API, Terraform-provider, cloud-init bij eerste boot"],
+        ["Beschikbaarheid", "Datacenters Genève & Zürich, Tier III+, 100% hernieuwbare energie"],
+        ["Bescherming", "Permanente DDoS-mitigatie, snapshots, off-site back-uptargets"],
+      ],
     },
     ksuite: {
       index: "CLOUD / 03",
@@ -636,6 +644,14 @@ const fr: CloudDict = {
         ["Rôle", "Provisioning, durcissement & supervision"],
         ["Délai", "< 48 heures pour un nœud prêt pour la production"],
         ["Inclus", "Pare-feu, fail2ban, reverse proxy, TLS 1.3"],
+      ],
+      techSpecs: [
+        ["Réseau", "Port 1 Gbps par nœud, trafic illimité, double pile IPv4 + IPv6"],
+        ["Stockage", "100 % NVMe, IOPS élevés (jusqu'à ~100k IOPS en lecture aléatoire sur les paliers 4 vCPU)"],
+        ["Modèles OS", "Ubuntu LTS, Debian, AlmaLinux, Rocky Linux, Fedora, Windows Server (BYOL)"],
+        ["Automatisation", "API compatible OpenStack, provider Terraform, cloud-init au premier démarrage"],
+        ["Disponibilité", "Datacenters Genève & Zurich, Tier III+, 100 % énergie renouvelable"],
+        ["Protection", "Mitigation DDoS permanente, snapshots, cibles de sauvegarde hors site"],
       ],
     },
     ksuite: {
