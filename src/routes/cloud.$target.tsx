@@ -8,6 +8,6 @@ export const Route = createFileRoute("/cloud/$target")({
     const to = isCloudTarget(params.target)
       ? cloudPath(defaultLocale, params.target)
       : `/${defaultLocale}`;
-    throw redirect({ to, replace: true });
+    throw redirect({ to, replace: true, statusCode: 301 });
   },
 });
