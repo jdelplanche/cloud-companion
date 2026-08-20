@@ -1,5 +1,6 @@
 import type { Dict } from "@/i18n";
-import { ComparisonTable, PageShellLite, SectionTitle } from "@/components/site/Layout";
+import { Arrow, ComparisonTable, PageShellLite, SectionTitle, actionClass } from "@/components/site/Layout";
+import { CloudLink } from "@/components/site/CloudLink";
 
 export function StackPage({ t }: { t: Dict }) {
   const p = t.stackPage;
@@ -9,7 +10,7 @@ export function StackPage({ t }: { t: Dict }) {
         <SectionTitle index={p.pillarsIndex} title={p.pillarsTitle} />
         <div className="mt-10 divide-y divide-gridline border-t border-gridline md:grid md:grid-cols-3 md:gap-10 md:divide-y-0 md:pt-10">
           {t.stacks.map((s) => (
-            <div key={s.id} className="py-8 md:py-0">
+            <div key={s.id} className="flex flex-col py-8 md:py-0">
               <span className="font-mono text-[10px] tracking-[0.22em] text-muted-ink">{s.id}</span>
               <h3 className="mt-4 text-xl leading-tight text-ebony">{s.title}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted-ink">{s.for}</p>
@@ -20,6 +21,10 @@ export function StackPage({ t }: { t: Dict }) {
                   </li>
                 ))}
               </ul>
+              <div className="grow" />
+              <CloudLink target={s.target} className={`${actionClass} mt-7 w-full md:w-auto`}>
+                {s.cta} <Arrow />
+              </CloudLink>
             </div>
           ))}
         </div>

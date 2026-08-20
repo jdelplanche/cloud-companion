@@ -14,7 +14,10 @@ import { Route as LangRouteImport } from './routes/$lang'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as LangIndexRouteImport } from './routes/$lang.index'
 import { Route as LangSlugRouteImport } from './routes/$lang.$slug'
+import { Route as CloudTargetRouteImport } from './routes/cloud.$target'
 import { Route as GoTargetRouteImport } from './routes/go.$target'
+import { Route as LangCloudIndexRouteImport } from './routes/$lang.cloud.index'
+import { Route as LangCloudTargetRouteImport } from './routes/$lang.cloud.$target'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,10 +44,25 @@ const LangSlugRoute = LangSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => LangRoute,
 } as any)
+const CloudTargetRoute = CloudTargetRouteImport.update({
+  id: '/cloud/$target',
+  path: '/cloud/$target',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GoTargetRoute = GoTargetRouteImport.update({
   id: '/go/$target',
   path: '/go/$target',
   getParentRoute: () => rootRouteImport,
+} as any)
+const LangCloudIndexRoute = LangCloudIndexRouteImport.update({
+  id: '/cloud/',
+  path: '/cloud/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangCloudTargetRoute = LangCloudTargetRouteImport.update({
+  id: '/cloud/$target',
+  path: '/cloud/$target',
+  getParentRoute: () => LangRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -52,15 +70,21 @@ export interface FileRoutesByFullPath {
   '/$lang': typeof LangRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$lang/$slug': typeof LangSlugRoute
+  '/cloud/$target': typeof CloudTargetRoute
   '/go/$target': typeof GoTargetRoute
   '/$lang/': typeof LangIndexRoute
+  '/$lang/cloud/$target': typeof LangCloudTargetRoute
+  '/$lang/cloud/': typeof LangCloudIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$lang/$slug': typeof LangSlugRoute
+  '/cloud/$target': typeof CloudTargetRoute
   '/go/$target': typeof GoTargetRoute
   '/$lang': typeof LangIndexRoute
+  '/$lang/cloud/$target': typeof LangCloudTargetRoute
+  '/$lang/cloud': typeof LangCloudIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -68,29 +92,52 @@ export interface FileRoutesById {
   '/$lang': typeof LangRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/$lang/$slug': typeof LangSlugRoute
+  '/cloud/$target': typeof CloudTargetRoute
   '/go/$target': typeof GoTargetRoute
   '/$lang/': typeof LangIndexRoute
+  '/$lang/cloud/$target': typeof LangCloudTargetRoute
+  '/$lang/cloud/': typeof LangCloudIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/$lang' | '/sitemap.xml' | '/$lang/$slug' | '/go/$target' | '/$lang/'
+    | '/'
+    | '/$lang'
+    | '/sitemap.xml'
+    | '/$lang/$slug'
+    | '/cloud/$target'
+    | '/go/$target'
+    | '/$lang/'
+    | '/$lang/cloud/$target'
+    | '/$lang/cloud/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/$lang/$slug' | '/go/$target' | '/$lang'
+  to:
+    | '/'
+    | '/sitemap.xml'
+    | '/$lang/$slug'
+    | '/cloud/$target'
+    | '/go/$target'
+    | '/$lang'
+    | '/$lang/cloud/$target'
+    | '/$lang/cloud'
   id:
     | '__root__'
     | '/'
     | '/$lang'
     | '/sitemap.xml'
     | '/$lang/$slug'
+    | '/cloud/$target'
     | '/go/$target'
     | '/$lang/'
+    | '/$lang/cloud/$target'
+    | '/$lang/cloud/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LangRoute: typeof LangRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  CloudTargetRoute: typeof CloudTargetRoute
   GoTargetRoute: typeof GoTargetRoute
 }
 
@@ -131,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangSlugRouteImport
       parentRoute: typeof LangRoute
     }
+    '/cloud/$target': {
+      id: '/cloud/$target'
+      path: '/cloud/$target'
+      fullPath: '/cloud/$target'
+      preLoaderRoute: typeof CloudTargetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/go/$target': {
       id: '/go/$target'
       path: '/go/$target'
@@ -138,17 +192,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GoTargetRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang/cloud/': {
+      id: '/$lang/cloud/'
+      path: '/cloud'
+      fullPath: '/$lang/cloud/'
+      preLoaderRoute: typeof LangCloudIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/cloud/$target': {
+      id: '/$lang/cloud/$target'
+      path: '/cloud/$target'
+      fullPath: '/$lang/cloud/$target'
+      preLoaderRoute: typeof LangCloudTargetRouteImport
+      parentRoute: typeof LangRoute
+    }
   }
 }
 
 interface LangRouteChildren {
   LangSlugRoute: typeof LangSlugRoute
   LangIndexRoute: typeof LangIndexRoute
+  LangCloudTargetRoute: typeof LangCloudTargetRoute
+  LangCloudIndexRoute: typeof LangCloudIndexRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
   LangSlugRoute: LangSlugRoute,
   LangIndexRoute: LangIndexRoute,
+  LangCloudTargetRoute: LangCloudTargetRoute,
+  LangCloudIndexRoute: LangCloudIndexRoute,
 }
 
 const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
@@ -157,6 +229,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LangRoute: LangRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  CloudTargetRoute: CloudTargetRoute,
   GoTargetRoute: GoTargetRoute,
 }
 export const routeTree = rootRouteImport
