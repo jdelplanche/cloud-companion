@@ -8,7 +8,7 @@ const payloadSchema = z.object({
   message: z.string().trim().min(10).max(5000),
   locale: z.enum(["en", "nl", "fr"]).default("en"),
   // Honeypot: moet leeg blijven — bots vullen dit in.
-  company: z.string().max(0).optional().or(z.literal("")),
+  company: z.string().max(200).optional(),
 });
 
 const WINDOW_MS = 10 * 60 * 1000;
