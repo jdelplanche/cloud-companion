@@ -27,6 +27,7 @@ export type CloudEntry = {
   signupLink: AffiliateKey;
   plans: CloudPlan[];
   team: [string, string][];
+  techSpecs?: [string, string][];
 };
 
 export type CloudDict = {
@@ -38,6 +39,9 @@ export type CloudDict = {
     teamLead: string;
     viewAt: string;
     disclaimer: string;
+    techIndex: string;
+    techTitle: string;
+    techLead: string;
     turnkey: string;
     backToStack: string;
     notFoundTitle: string;
@@ -54,8 +58,11 @@ const en: CloudDict = {
     teamTitle: "Onboarding team & guidance",
     teamLead: "You sign up with Infomaniak; Delplanche handles the technical setup.",
     viewAt: "View at Infomaniak",
+    techIndex: "SPEC / Systems",
+    techTitle: "Technical specification sheet",
+    techLead: "Network, storage and platform details for sysadmins and developers.",
     disclaimer:
-      "Rates are indicative public Infomaniak list prices (CHF, excl. VAT) and may change. The current price is always shown on infomaniak.com. Delplanche may receive a commission through these authorised links — at no extra cost to you.",
+      "All prices are starting rates based on annual billing: indicative public Infomaniak list prices (CHF, excl. VAT) that may change. The current price is always shown on infomaniak.com. Delplanche may receive a commission through these authorised links — at no extra cost to you.",
     turnkey: "Turn-key setup",
     backToStack: "Back to the stack overview",
     notFoundTitle: "Unknown routing key",
@@ -166,6 +173,14 @@ const en: CloudDict = {
         ["Lead time", "< 48 hours for a production-ready node"],
         ["Included", "Firewall, fail2ban, reverse proxy, TLS 1.3"],
       ],
+      techSpecs: [
+        ["Network", "1 Gbps port per node, unmetered traffic, IPv4 + IPv6 dual stack"],
+        ["Storage", "Pure NVMe, high-IOPS (up to ~100k IOPS random read on 4 vCPU tiers)"],
+        ["OS templates", "Ubuntu LTS, Debian, AlmaLinux, Rocky Linux, Fedora, Windows Server (BYOL)"],
+        ["Automation", "OpenStack-compatible API, Terraform provider, cloud-init on first boot"],
+        ["Availability", "Geneva & Zurich datacentres, Tier III+, 100% renewable energy"],
+        ["Protection", "Always-on DDoS mitigation, snapshots, off-site backup targets"],
+      ],
     },
     ksuite: {
       index: "CLOUD / 03",
@@ -181,7 +196,13 @@ const en: CloudDict = {
           name: "kSuite Standard",
           price: "from CHF 2.60",
           unit: "/ user / month",
-          specs: ["kMail + kDrive + kMeet", "1 TB shared storage", "Your own domain", "Swiss jurisdiction"],
+          specs: [
+            "kMail, kDrive (cloud storage) & kChat",
+            "kMeet video conferencing",
+            "OnlyOffice document editing (docs, sheets, slides)",
+            "1 TB shared storage, your own domain",
+            "Swiss jurisdiction, no data mining",
+          ],
           link: "ksuite",
           featured: true,
         },
@@ -273,8 +294,11 @@ const nl: CloudDict = {
     teamTitle: "Aanmeldingsteam & begeleiding",
     teamLead: "Je meldt aan bij Infomaniak; Delplanche voert de technische inrichting uit.",
     viewAt: "Bekijk bij Infomaniak",
+    techIndex: "SPEC / Systems",
+    techTitle: "Technische specificatiefiche",
+    techLead: "Netwerk-, opslag- en platformdetails voor sysadmins en developers.",
     disclaimer:
-      "Tarieven zijn indicatieve publieke lijstprijzen van Infomaniak (CHF, excl. btw) en kunnen wijzigen. De actuele prijs staat altijd op infomaniak.com. Delplanche kan een commissie ontvangen via deze geautoriseerde links — dit kost jou niets extra.",
+      "Alle prijzen zijn startprijzen bij jaarfacturatie: indicatieve publieke lijstprijzen van Infomaniak (CHF, excl. btw) die kunnen wijzigen. De actuele prijs staat altijd op infomaniak.com. Delplanche kan een commissie ontvangen via deze geautoriseerde links — dit kost jou niets extra.",
     turnkey: "Turn-key setup",
     backToStack: "Terug naar het stack-overzicht",
     notFoundTitle: "Onbekende routingsleutel",
@@ -400,7 +424,13 @@ const nl: CloudDict = {
           name: "kSuite Standard",
           price: "vanaf CHF 2.60",
           unit: "/ gebruiker / maand",
-          specs: ["kMail + kDrive + kMeet", "1 TB gedeelde opslag", "Eigen domeinnaam", "Zwitserse jurisdictie"],
+          specs: [
+            "kMail, kDrive (cloudopslag) & kChat",
+            "kMeet videovergaderen",
+            "OnlyOffice documentbewerking (tekst, rekenblad, presentatie)",
+            "1 TB gedeelde opslag, eigen domeinnaam",
+            "Zwitserse jurisdictie, geen datamining",
+          ],
           link: "ksuite",
           featured: true,
         },
@@ -492,8 +522,11 @@ const fr: CloudDict = {
     teamTitle: "Équipe d'intégration & accompagnement",
     teamLead: "Vous souscrivez chez Infomaniak ; Delplanche réalise la mise en œuvre technique.",
     viewAt: "Voir chez Infomaniak",
+    techIndex: "SPEC / Systems",
+    techTitle: "Fiche de spécifications techniques",
+    techLead: "Détails réseau, stockage et plateforme pour sysadmins et développeurs.",
     disclaimer:
-      "Les tarifs sont des prix publics indicatifs d'Infomaniak (CHF, hors TVA) et peuvent évoluer. Le prix actuel figure toujours sur infomaniak.com. Delplanche peut percevoir une commission via ces liens autorisés — sans coût supplémentaire pour vous.",
+      "Tous les prix sont des tarifs de départ en facturation annuelle : prix publics indicatifs d'Infomaniak (CHF, hors TVA) susceptibles d'évoluer. Le prix actuel figure toujours sur infomaniak.com. Delplanche peut percevoir une commission via ces liens autorisés — sans coût supplémentaire pour vous.",
     turnkey: "Installation clé en main",
     backToStack: "Retour à l'aperçu de l'infrastructure",
     notFoundTitle: "Clé de routage inconnue",
@@ -619,7 +652,13 @@ const fr: CloudDict = {
           name: "kSuite Standard",
           price: "dès CHF 2.60",
           unit: "/ utilisateur / mois",
-          specs: ["kMail + kDrive + kMeet", "1 To de stockage partagé", "Nom de domaine propre", "Juridiction suisse"],
+          specs: [
+            "kMail, kDrive (stockage cloud) & kChat",
+            "Visioconférence kMeet",
+            "Édition de documents OnlyOffice (texte, tableur, présentation)",
+            "1 To de stockage partagé, nom de domaine propre",
+            "Juridiction suisse, aucune exploitation des données",
+          ],
           link: "ksuite",
           featured: true,
         },
