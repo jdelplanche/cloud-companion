@@ -14,21 +14,17 @@ const navPages: { page: PageKey; key: "stack" | "security" | "onboarding" | "con
 export function BrandMark({ className }: { className?: string }) {
   const lang = useLocale();
   return (
-    <span className={className}>
-      <a href="https://delplanche.com" className="transition-colors hover:text-moss" rel="noreferrer">
-        DELPLANCHE
-      </a>
-      <span className="text-muted-ink"> / </span>
-      <Link
-        to="/$lang"
-        params={{ lang }}
-        className="text-muted-ink transition-colors hover:text-moss"
-      >
-        CLOUD
-      </Link>
-    </span>
+    <Link
+      to="/$lang"
+      params={{ lang }}
+      className={`${className ?? ""} transition-colors hover:text-moss`}
+      aria-label="delplanche.cloud"
+    >
+      DELPLANCHE<span className="text-muted-ink"> / </span>CLOUD
+    </Link>
   );
 }
+
 
 /** Handgetekend sluit-streepjeskruis */
 function HandClose({ className }: { className?: string }) {
@@ -159,7 +155,13 @@ export function TopNav() {
           data-testid="mobile-nav"
           className="border-t border-gridline bg-canvas px-6 py-4 md:hidden"
         >
-          <nav className="flex flex-col">
+          <div className="flex items-center justify-between pt-1 pb-4">
+            <span className="font-mono text-[9px] tracking-[0.2em] text-muted-ink uppercase">
+              {t.nav.language}
+            </span>
+            <LanguageSwitcher onNavigate={() => setOpen(false)} />
+          </div>
+          <nav className="flex flex-col border-t border-gridline">
             {navPages.map(({ page, key }, i) => (
               <LocaleLink
                 key={page}
@@ -175,12 +177,7 @@ export function TopNav() {
               </LocaleLink>
             ))}
           </nav>
-          <div className="mt-2 flex items-center justify-between border-t border-gridline pt-5 pb-1">
-            <span className="font-mono text-[9px] tracking-[0.2em] text-muted-ink uppercase">
-              {t.nav.language}
-            </span>
-            <LanguageSwitcher onNavigate={() => setOpen(false)} />
-          </div>
+
         </div>
       )}
     </header>

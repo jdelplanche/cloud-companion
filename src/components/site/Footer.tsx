@@ -1,6 +1,6 @@
 import { BrandMark } from "@/components/site/TopNav";
 import { CopyAction } from "@/components/site/CopyAction";
-import { LanguageSwitcher, LocaleLink, useDict } from "@/i18n";
+import { LocaleLink, useDict } from "@/i18n";
 import type { PageKey } from "@/i18n/config";
 import { Arrow, actionClass } from "@/components/site/Layout";
 
@@ -40,8 +40,8 @@ export function Footer() {
 
   return (
     <footer className="border-t border-gridline">
-      <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
-        <div className="grid gap-12 md:grid-cols-[1.1fr_2fr] md:gap-16">
+      <div className="mx-auto w-full max-w-6xl px-6 py-10 md:px-10 md:py-20">
+        <div className="grid gap-9 md:grid-cols-[1.1fr_2fr] md:gap-16">
           <div>
             <BrandMark className="font-mono text-[12px] font-medium tracking-[0.16em] text-ebony" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-ink">
@@ -91,7 +91,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-gridline pt-7 sm:flex-row sm:items-center sm:justify-between">
+        <div className="vault-frame mt-9 flex flex-col gap-4 rounded-md p-5 sm:flex-row sm:items-center sm:justify-between md:mt-12 md:p-6">
           <div className="flex flex-col gap-1.5">
             <span className="font-mono text-[9px] leading-[1.9] tracking-[0.18em] text-muted-ink uppercase">
               // © 2026 delplanche.cloud
@@ -106,7 +106,9 @@ export function Footer() {
               </LocaleLink>
             </span>
           </div>
-          <LanguageSwitcher />
+          <span className="datastamp font-mono text-[9px] tracking-[0.24em] text-muted-ink uppercase">
+            J.Z.D.
+          </span>
         </div>
       </div>
     </footer>
