@@ -1,13 +1,13 @@
 import { Monitor, Network, Warehouse } from "lucide-react";
 import { LocaleLink, type Dict } from "@/i18n";
 import {
-import { CloudLink } from "@/components/site/CloudLink";
   Arrow,
   Container,
   SectionTitle,
   actionClass,
   actionClassMuted,
 } from "@/components/site/Layout";
+import { CloudLink } from "@/components/site/CloudLink";
 
 const flowIcons = [Monitor, Network, Warehouse];
 
