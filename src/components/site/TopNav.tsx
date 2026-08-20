@@ -14,21 +14,17 @@ const navPages: { page: PageKey; key: "stack" | "security" | "onboarding" | "con
 export function BrandMark({ className }: { className?: string }) {
   const lang = useLocale();
   return (
-    <span className={className}>
-      <a href="https://delplanche.com" className="transition-colors hover:text-moss" rel="noreferrer">
-        DELPLANCHE
-      </a>
-      <span className="text-muted-ink"> / </span>
-      <Link
-        to="/$lang"
-        params={{ lang }}
-        className="text-muted-ink transition-colors hover:text-moss"
-      >
-        CLOUD
-      </Link>
-    </span>
+    <Link
+      to="/$lang"
+      params={{ lang }}
+      className={`${className ?? ""} transition-colors hover:text-moss`}
+      aria-label="delplanche.cloud"
+    >
+      DELPLANCHE<span className="text-muted-ink"> / </span>CLOUD
+    </Link>
   );
 }
+
 
 /** Handgetekend sluit-streepjeskruis */
 function HandClose({ className }: { className?: string }) {
