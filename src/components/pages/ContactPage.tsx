@@ -70,6 +70,10 @@ export function ContactPage({ t }: { t: Dict }) {
             </div>
           ) : (
             <form onSubmit={onSubmit} className="grid gap-8 md:grid-cols-2 md:gap-10">
+              <div aria-hidden="true" className="hidden">
+                <label htmlFor="company">Company</label>
+                <input id="company" name="company" tabIndex={-1} autoComplete="off" />
+              </div>
               <Field label={p.name}>
                 <input required name="name" className={fieldClass} placeholder="Jona Delplanche" />
               </Field>
